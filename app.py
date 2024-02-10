@@ -18,8 +18,8 @@ def celery_init_app(app: Flask) -> Celery:
 app = Flask(__name__)
 app.config.from_mapping(
     CELERY=dict(
-        broker_url="redis://localhost",
-        result_backend="redis://localhost",
+        broker_url="redis://redis:6379",
+        result_backend="redis://redis:6379",
         task_ignore_result=True,
     ),
 )
@@ -39,4 +39,4 @@ def start_add() -> dict[str, object]:
     return {"result_id": result.id}
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port=5000,debug=True)

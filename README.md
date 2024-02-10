@@ -2,29 +2,22 @@
 Playing with task-queues and long-running processes
 
 ## Requirements
-- [Redis](https://redis.io/docs/install/install-redis/)
-- [Celery](https://docs.celeryq.dev/en/stable/getting-started/introduction.html#installation)
+- [Docker](https://docs.docker.com/get-docker/)
 
-## Install
-```bash
-pip install -r requirements.txt
-pip install "celery[redis]"
-```
 
 ## Usage
-Init the celery worker and the flask API.
-```bash
-celery -A app.celery worker --loglevel INFO
-python3 app.py
+Init the containers
+```
+docker compose up --build
 ```
 Trigger the task
-```bash
+```
 curl -X POST localhost:5000/add -d "a=50" -d "b=10"
 ```
 
 ## Inspect task metadata
 ```
-redis-cli
+redis-cli -p 6380
 get celery-task-meta-<task id>
 ```
 
