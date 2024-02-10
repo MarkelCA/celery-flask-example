@@ -1,5 +1,5 @@
 # celery-flask-example
-Playing with task-queues and long-running processes
+Playing with task-queues and long-running processes. Uses Redis as storage for the task metadata.
 
 ## Requirements
 - [Redis](https://redis.io/docs/install/install-redis/)
