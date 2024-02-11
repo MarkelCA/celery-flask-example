@@ -1,6 +1,5 @@
-from celery import shared_task
 from flask import Flask, request
-from time import sleep
+from tasks import add,fail,migration
 
 app = Flask(__name__)
 app.config.from_mapping(
@@ -11,16 +10,21 @@ app.config.from_mapping(
     ),
 )
 
+@app.get("/fail")
+def failing_task():
+    result = fail.run.delay()
+    return {"result_id": result.id}
 
-@shared_task(ignore_result=False)
-def add_together(a: int, b: int) -> int:
-    sleep(5)
-    return a + b
+@app.get("/migration")
+def migration_task():
+    result = migration.run.delay()
+    return {"result_id": result.id}
+
 
 @app.post("/add")
 def start_add() -> dict[str, object]:
     a = request.form.get("a", type=int)
     b = request.form.get("b", type=int)
-    result = add_together.delay(a, b)
+    result = add.run.delay(a, b)
     return {"result_id": result.id}
 
