@@ -1,6 +1,7 @@
 from celery import Celery, Task
 from flask import Flask, request
 from controller import app
+from waitress import serve
 
 def celery_init_app(app: Flask) -> Celery:
     class FlaskTask(Task):
@@ -18,4 +19,4 @@ def celery_init_app(app: Flask) -> Celery:
 celery = celery_init_app(app)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=5000,debug=True)
+    serve(app, host="0.0.0.0", port=5000)
