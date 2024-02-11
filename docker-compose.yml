@@ -10,6 +10,8 @@ services:
       - "5000:5000"
     depends_on:
       - redis
+    volumes:
+      - ./src:/app/src
 
   redis:
     container_name: redis
