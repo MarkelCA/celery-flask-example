@@ -1,5 +1,5 @@
-# celery-flask-example
-Playing with task queues and long-running processes. Uses Flask to trigger the tasks and redis as storage for the task metadata.
+# celery-flask-scaffold
+Structure for projects involving task queues and long-running processes. Uses Flask to trigger the tasks and redis as storage for the task metadata.
 
 ## Requirements
 - [Docker](https://docs.docker.com/get-docker/)
