@@ -20,6 +20,5 @@ EXPOSE 5000
 
 CMD redis-server &\
     celery --app=src.init.celery worker \
-    --loglevel=INFO --logfile=/var/log/celery/worker-example.log \
     --uid=nobody --gid=nogroup &\
     python3 src/init.py
