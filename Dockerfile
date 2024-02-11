@@ -17,6 +17,5 @@ VOLUME ["/var/log/celery", "/var/run/celery"]
 EXPOSE 5000
 
 CMD celery --app=src.init.celery worker \
-    --loglevel=INFO --logfile=/var/log/celery/worker-example.log \
     --uid=nobody --gid=nogroup &\
     python3 src/init.py
