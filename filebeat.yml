@@ -1,0 +1,18 @@
+filebeat.inputs:
+- type: docker
+  containers:
+    path: "/var/lib/docker/containers"
+    stream: "stdout"
+    ids:
+      - "*"
+  processors:
+    - add_docker_metadata: ~
+  multiline.pattern: '^\d{4}-\d{2}-\d{2} '
+  multiline.negate: true
+  multiline.match: after
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+  username: "elastic"
+  password: "changeme"
+

@@ -28,7 +28,9 @@ celery = celery_init_app(app)
 
 @shared_task(ignore_result=False)
 def add_together(a: int, b: int) -> int:
-    sleep(5)
+    for i in range(15):
+        sleep(1)
+        print(f"{i}...")
     return a + b
 
 @app.post("/add")
