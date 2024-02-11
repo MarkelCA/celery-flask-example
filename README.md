@@ -10,9 +10,11 @@ Init the containers
 ```
 docker compose up --build
 ```
-Trigger the task
+Trigger the tasks
 ```
 curl -X POST localhost:5000/add -d "a=50" -d "b=10"
+curl localhost:5000/fail
+curl localhost:5000/migration
 ```
 
 ## Inspect task metadata
